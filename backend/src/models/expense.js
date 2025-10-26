@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const expenseSchema = new mongoose.Schema({
   categoryId: { type: mongoose.Schema.Types.ObjectId, ref: "category",required:true },
@@ -13,4 +13,4 @@ const expenseSchema = new mongoose.Schema({
 
  const Expense = mongoose.model('expense',expenseSchema);
 
- module.exports = Expense;
+export default Expense;

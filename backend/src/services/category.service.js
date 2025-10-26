@@ -1,4 +1,4 @@
-const Category = require('../models/category');
+import Category from '../models/category.js';
 
 export const createCategory = async (categoryData) =>
 {
@@ -33,7 +33,7 @@ export const getCategory = async (categoryId) =>{
     return categoryDb;
 }
 
-export const getAllCategory = () => {
+export const getAllCategories = () => {
   return Category.find({});
 };
 

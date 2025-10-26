@@ -1,4 +1,4 @@
-const Expense = require('../models/expense');
+import Expense from '../models/expense.js';
 
 export const createExpense = async(expenseData) =>
 {

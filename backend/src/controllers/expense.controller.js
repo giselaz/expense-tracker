@@ -1,7 +1,7 @@
-import { validateCreateExpense } from "../validations/expense";
-import * as ExpenseService from "../services/expense.service";
-import transporter from "../utils/transporter";
-import { handleValidation,handleServerError } from "../utils/responseHelper";
+import { validateCreateExpense } from "../validations/expense.js";
+import * as ExpenseService from "../services/expense.service.js";
+import transporter from "../utils/transporter.js";
+import { handleValidation } from "../utils/responseHelper.js";
 
 export const createExpense = async (req, res) => {
   const expenseData = {...req.body,categoryId:req.params.categoryId}
@@ -67,6 +67,8 @@ const sendNotification = (amount, expenseName) => {
       subject: "Expense Amount Check",
       text: `The amount for ${expenseName} is too high`,
     };
-    transporter.sendMail(mailOptions, (error, info) => {});
+    transporter.sendMail(mailOptions, (error, info) => {
+      
+    });
   }
 };

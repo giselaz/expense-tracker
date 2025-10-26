@@ -1,8 +1,8 @@
-import { validateCreateCategory } from "../validations/category";
-import *  as CategoryService from "../services/category.service";
+import * as   CategoryValidation from "../validations/category.js";
+import * as CategoryService from  "../services/category.service.js";
 
-export const createCategory = async (req, res) => {
-  const { error } = validateCreateCategory(req.body);
+export const createCategory = async (req, res) => { 
+  const { error } = CategoryValidation.validateCreateCategory(req.body);
   if (error) {
     res.status(400).json({ ok: false, error: error.details[0].message });
   } else {
