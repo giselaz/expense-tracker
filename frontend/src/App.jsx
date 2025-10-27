@@ -1,6 +1,7 @@
 import "./App.css";
 import Category from "./components/Category";
 import Expense from "./components/Expense";
+
 function App() {
   return (
     <main>
