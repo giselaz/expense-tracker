@@ -43,6 +43,16 @@ export const getAllExpenses = async (req, res) => {
     res.status(500).json({ ok: false, error: "Internal Server Error" });
   }
 };
+export const getExpensesByCategory = async (req, res) => {
+  try {
+    const expenses = await ExpenseService.getExpenseByCategory(
+      req.params.categoryId
+    );
+    res.status(200).json({ ok: true, data: expenses });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: "Internal Server Error" });
+  }
+};
 
 export const deleteExpense = async (req, res) => {
   try {
@@ -56,6 +66,7 @@ export const deleteExpense = async (req, res) => {
       res.status(404).json({ ok: false, error: "Expense not found" });
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json({ ok: false, error: "Internal Server Error" });
   }
 };

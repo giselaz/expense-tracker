@@ -16,7 +16,7 @@ const updatedCategory = await Expense.findOneAndUpdate(
 }
 
 export const deleteExpense = async (expenseId) =>{
-    const deletedExpense = await vendor.deleteMany({ _id: expenseId });
+    const deletedExpense = await Expense.deleteMany({ _id: expenseId });
     return deletedExpense.deletedCount > 0;
 }
 
