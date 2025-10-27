@@ -19,29 +19,18 @@ const createCategory = async (categoryData) => {
   }
 };
 
-const updateCategory = async (categoryId, categoryData) => {
-  try {
-    const response = await axiosInstance.put(`/categories/${categoryId}`, categoryData);
-    return response.data;
-  } catch (error) {
-    console.error("Error updating category:", error);
-    throw error;
-  }
-};
 
-const deleteCategory = async (categoryId) => {
-  try {
-    const response = await axiosInstance.delete(`/categories/${categoryId}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error deleting category:", error);
-    throw error;
-  }
-};
+// const deleteCategory = async (categoryId) => {
+//   try {
+//     const response = await axiosInstance.delete(`/categories/${categoryId}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error deleting category:", error);
+//     throw error;
+//   }
+// };
 
 export {
   getAllCategories,
   createCategory,
-  updateCategory,
-  deleteCategory
 };

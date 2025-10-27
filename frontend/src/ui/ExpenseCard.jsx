@@ -34,13 +34,6 @@ export default function ExpenseCard({ date, description, category, amount ,id}) 
           <Button
             variant="link"
             size="sm"
-            className="p-0 me-2 text-decoration-none"
-          >
-            Edit
-          </Button>
-          <Button
-            variant="link"
-            size="sm"
             className="p-0 text-decoration-none text-danger"
             onClick={() => mutation.mutate(id)}
           >

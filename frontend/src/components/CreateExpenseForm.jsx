@@ -3,11 +3,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createExpense } from "../services/expenseService";
 import { Button } from "react-bootstrap";
 import  {useCategories} from "../context/categoryContext";
+import { useToast } from "../context/ToastContext";
 
 const CreateExpenseForm = ({ onClose }) => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(0);
   const [categoryId, setCategoryId] = useState(0);
+  const { showToast } = useToast();
+
 
   const { categories } = useCategories();
   const queryClient = useQueryClient();
@@ -22,6 +25,13 @@ const CreateExpenseForm = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const parsedAmount = parseFloat(amount);
+    if(parsedAmount > 1000)
+    {
+      showToast("Amount should not be greater than $1000", "danger");
+
+      // return;
+    }
     mutation.mutate({ description, amount: parseFloat(amount), categoryId });
   };
 
@@ -71,6 +81,7 @@ const CreateExpenseForm = ({ onClose }) => {
              {mutation.isLoading ? "Saving..." : "Save"}
         </Button>
       </div>
+
     </form>
   );
 };

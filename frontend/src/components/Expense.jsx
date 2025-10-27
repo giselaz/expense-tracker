@@ -8,22 +8,33 @@ import { useExpenses } from "../context/ExpenseContext";
 function Expense() {
   const { categories } = useCategories();
   const [showModal, setShowModal] = useState(false);
-  const { expenses, isLoading, isError, error, selectedCategoryId,
-    setSelectedCategoryId, } = useExpenses();
+  const {
+    expenses,
+    isLoading,
+    isError,
+    error,
+    selectedCategoryId,
+    setSelectedCategoryId,
+  } = useExpenses();
+  // calculate total expenses
+  const totalAmount = expenses.reduce((sum, exp) => sum + exp.amount, 0);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div className="category-container align-items-center mt-4">
-      <div className="category-header mb-4">
-        <h2 style={{ textAlign: "center" }}>Expense</h2>
+      <div className="category-header ">
+          <h2>Expense</h2>
         <button
           className="btn btn-primary mt-2"
           onClick={() => setShowModal(true)}
         >
           Add Expense
         </button>
+      </div>
+      <div className="w-100 d-flex justify-content-start  mb-4">
+            <h5 style={{ color: "#555",fontSize: "1rem" }}>Total: ${totalAmount.toFixed(2)}</h5>
       </div>
       <div className=" w-100 d-flex fw-semibold mb-2 px-2 align-items-center">
         <div className="col-2">Date</div>
@@ -55,8 +66,8 @@ function Expense() {
             date={new Date(expense.createdAt).toLocaleDateString()}
             description={expense.description}
             category={
-                categories.find((cat) => cat._id === expense.categoryId)?.name ||
-                "Uncategorized"
+              categories.find((cat) => cat._id === expense.categoryId)?.name ||
+              "Uncategorized"
             }
             amount={expense.amount}
             id={expense._id}
