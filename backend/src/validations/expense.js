@@ -1,4 +1,4 @@
-const Joi = require("joi");
+import Joi from "joi";
 
 const validateCreateExpense = (body) => {
   const schema = Joi.object({
@@ -16,4 +16,4 @@ const validateUpdateExpense = (body) => {
   });
   return schema.validate(body);
 };
-module.exports = { validateCreateExpense, validateUpdateExpense};
+export { validateCreateExpense, validateUpdateExpense};

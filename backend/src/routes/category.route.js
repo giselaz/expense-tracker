@@ -9,13 +9,13 @@ route.post(
   "/",
   CategoryController.createCategory 
 );
-// route.patch(
-//   "/:categoryId",
-//   CategoryController.updateCategory
-// );
+route.patch(
+  "/:categoryId",
+  CategoryController.updateCategory
+);
 // delete category 
-// route.delete(
-//   "/:categoryId",
-//   CategoryController.deleteCategory
-// );
+route.delete(
+  "/:categoryId",
+  CategoryController.deleteCategory
+);
 export default route;

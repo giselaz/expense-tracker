@@ -1,4 +1,4 @@
-const Joi = require("joi");
+import Joi from "joi";
 
 const validateCreateCategory = (body) => {
   const schema = Joi.object({
@@ -12,4 +12,4 @@ const validateUpdateCategory = (body) => {
   });
   return schema.validate(body);
 };
-module.exports = { validateCreateCategory,validateUpdateCategory};
+export { validateCreateCategory, validateUpdateCategory };

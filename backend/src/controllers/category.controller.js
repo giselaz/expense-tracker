@@ -23,3 +23,26 @@ export const getAllCategories = async (req, res) => {
     res.status(500).json({ ok: false, error: "Internal Server Error" });
   }
 }
+
+export const updateCategory = async (req, res) => {
+  const { error } = CategoryValidation.validateUpdateCategory(req.body);
+  if (error) {
+    res.status(400).json({ ok: false, error: error.details[0].message });
+  } else {
+    try {
+      const category = await CategoryService.updateCategory(req.params.categoryId, req.body);
+      res.status(200).json({ ok: true, data: category });
+    } catch (err) {
+      res.status(500).json({ ok: false, error: "Internal Server Error" });
+    }
+  }
+}
+
+export const deleteCategory = async (req, res) => { 
+  try {
+    await CategoryService.deleteCategory(req.params.categoryId);
+    res.status(200).json({ ok: true, data: "Category deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: "Internal Server Error" });
+  }
+}
