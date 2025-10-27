@@ -1,5 +1,4 @@
-import Card from "../ui/CustomCard";
-import { useQuery } from "@tanstack/react-query";
+import Card from "../ui/CustomCard"; 
 import { getAllCategories } from "../services/categoryService";
 import Modal from "../ui/Modal";
 import { useState } from "react";

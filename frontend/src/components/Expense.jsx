@@ -7,13 +7,13 @@ import { useExpenses } from "../context/ExpenseContext";
 
 function Expense() {
   const { categories } = useCategories();
-
-  const [filterCategory, setFilterCategory] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const { expenses, isLoading, isError, error } = useExpenses();
+  const { expenses, isLoading, isError, error, selectedCategoryId,
+    setSelectedCategoryId, } = useExpenses();
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
+
   return (
     <div className="category-container align-items-center mt-4">
       <div className="category-header mb-4">
@@ -32,10 +32,12 @@ function Expense() {
           <span>Category</span>
           <Form.Select
             size="sm"
-            // value={filterCategory}
-            // onChange={(e) => setFilterCategory(e.target.value)}
+            value={selectedCategoryId}
+            onChange={(e) => setSelectedCategoryId(e.target.value)}
             style={{ width: "150px" }}
           >
+            <option value="">All</option>
+
             {categories.map((cat) => (
               <option key={cat._id} value={cat._id}>
                 {cat.name}
@@ -57,6 +59,7 @@ function Expense() {
                 "Uncategorized"
             }
             amount={expense.amount}
+            id={expense._id}
           />
         ))}
       </div>
