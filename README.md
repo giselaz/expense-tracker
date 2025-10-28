@@ -67,9 +67,55 @@ expense-tracker/
 
 ## ⚙️ Installation & Setup
 
-### 1. Clone the repository
+### 🧩 Step 1: Clone the repository
 
-```bash
+```
 git clone https://github.com/giselaz/expense-tracker.git
-cd expense-tracker `
+cd expense-tracker
+```
+### 📦 Step 2: Install dependencies
+#### Install backend dependencies:
+```
+cd backend
+npm install
+```
+#### Install frontend dependencies:
+```
+cd frontend
+npm install
+```
+###🔑 Step 3: Environment variables
 
+Create a .env file in the backend folder using .env.example as reference:
+```
+cp backend/.env.example backend/.env
+```
+
+###🚀 Step 4: Start the project
+
+Run the backend:
+```
+cd backend
+npm run dev
+```
+Run the frontend:
+```
+cd frontend
+npm run dev
+```
+🖥️ The backend runs on http://localhost:3000
+
+🌐 The frontend runs on http://localhost:5173
+
+##🧠 Environment Variables
+
+Create a .env file in the backend/ directory with the following keys:
+PORT=3000
+DATABASE_URL=mongodb+srv://test12:HO9pvgOPlSvkSm92@cluster0.agctkgz.mongodb.net/expense-tracker?retryWrites=true&w=majority
+GOOGLE_PASSWORD ="your_email_pass"
+GOOGLE_EMAIL=youremail@gmail.com
+COMPANY_EMAIL=testemail@gmail.com
+📧 Email Service Setup
+
+This project optionally supports sending emails (e.g., expense summaries or confirmation messages).
+It uses Nodemailer for email delivery.
