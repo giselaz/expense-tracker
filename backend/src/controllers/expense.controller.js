@@ -57,13 +57,12 @@ export const deleteExpense = async (req, res) => {
 };
 
 const sendNotification = (description) => {
-  console.log("Checking amount for notification:", description);
 
-    const mailOptions = {
+  const mailOptions = {
       from: process.env.GOOGLE_EMAIL,
       to: process.env.COMPANY_EMAIL,
       subject: "Expense Amount Check",
-      text: `The amount for ${description} is too high`,
+      html: `The amount for ${description} is too high`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
