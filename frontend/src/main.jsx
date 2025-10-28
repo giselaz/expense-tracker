@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CategoriesProvider } from "./context/categoryContext";
 import { ExpensesProvider } from "./context/ExpenseContext.jsx";
 import { ToastProvider } from "./context/ToastContext.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const queryClient = new QueryClient();
 

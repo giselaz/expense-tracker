@@ -13,25 +13,10 @@ export const createExpense = async (req, res) => {
   }
   try {
     const expense = await ExpenseService.createExpense(expenseData);
-    sendNotification(expense.amount, expense.name);
+    if (expense.amount > 1000) sendNotification(expense.description);
     return res.status(200).json({ ok: true, data: expense });
   } catch (err) {
     res.status(500).json({ ok: false, error: "Internal Server Error" });
-  }
-};
-export const updateExpense = async (req, res) => {
-  const { error } = validateCreateExpense(req.body);
-
-  if (error) {
-    res.status(400).json({ ok: false, error: error.details[0].message });
-  } else {
-    try {
-      const expense = await ExpenseService.createExpense(req.body);
-      sendNotification(expense.amount, expense.description);
-      res.status(200).json({ ok: true, data: expense });
-    } catch (err) {
-      res.status(500).json({ ok: false, error: "Internal Server Error" });
-    }
   }
 };
 
@@ -71,14 +56,16 @@ export const deleteExpense = async (req, res) => {
   }
 };
 
-const sendNotification = (amount, description) => {
-  if (amount > 1000) {
+const sendNotification = (description) => {
+  console.log("Checking amount for notification:", description);
+
     const mailOptions = {
       from: process.env.GOOGLE_EMAIL,
       to: process.env.COMPANY_EMAIL,
       subject: "Expense Amount Check",
       text: `The amount for ${description} is too high`,
     };
+
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log("Error sending email:", error);
@@ -87,4 +74,4 @@ const sendNotification = (amount, description) => {
       }
     });
   }
-};
+

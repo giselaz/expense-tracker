@@ -16,18 +16,8 @@ export const createCategory = async (categoryData) =>
         return CategoryDb;
     }
 }
-export const updateCategory = async (categoryId,categoryData) =>{
-   const updatedCategory = await Category.findOneAndUpdate(
-    { _id: categoryId },
-    { $set: categoryData },
-    { new: true }
-  );
-  return updatedCategory;
-}
-export const deleteCategory = async (categoryId) =>{
-    const deletedCategory = await Category.deleteMany({ _id: categoryId });
-    return deletedCategory.deletedCount > 0;
-}
+
+
 export const getCategory = async (categoryId) =>{
     const categoryDb = await Category.findById(categoryId);
     return categoryDb;

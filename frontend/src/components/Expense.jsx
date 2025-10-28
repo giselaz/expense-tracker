@@ -22,6 +22,7 @@ function Expense() {
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
 
+
   return (
     <div className="category-container align-items-center mt-4">
       <div className="category-header ">
@@ -60,7 +61,7 @@ function Expense() {
         <div className="col-2 text-end">Actions</div>
       </div>
       <div className="category-list d-flex flex-wrap justify-content-center gap-3 mt-4">
-        {expenses.map((expense) => (
+        { expenses.length > 0 ? expenses.map((expense) => (
           <ExpenseCard
             key={expense._id}
             date={new Date(expense.createdAt).toLocaleDateString()}
@@ -72,7 +73,7 @@ function Expense() {
             amount={expense.amount}
             id={expense._id}
           />
-        ))}
+        )) : <p>No expenses found.</p>}
       </div>
       <Modal
         show={showModal}

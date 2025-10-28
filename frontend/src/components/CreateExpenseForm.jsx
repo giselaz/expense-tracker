@@ -29,7 +29,7 @@ const CreateExpenseForm = ({ onClose }) => {
     if(parsedAmount > 1000)
     {
       showToast("Amount should not be greater than $1000", "danger");
-
+      
       // return;
     }
     mutation.mutate({ description, amount: parseFloat(amount), categoryId });

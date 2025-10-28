@@ -6,14 +6,6 @@ export const createExpense = async(expenseData) =>
     return expense;
 }
 
-export const updateExpense = async (expenseId,expenseData) =>{
-const updatedCategory = await Expense.findOneAndUpdate(
-    { _id: expenseId },
-    { $set: expenseData },
-    { new: true }
-  );
-  return updatedCategory;
-}
 
 export const deleteExpense = async (expenseId) =>{
     const deletedExpense = await Expense.deleteMany({ _id: expenseId });
@@ -25,11 +17,6 @@ export const getExpenseByCategory = async (categoryId) =>{
     return expenses;
 }
 
-export const getExpense = async (expenseId) =>
-{
-    const expense = await Expense.findById(expenseId);
-    return expense;
-}
 export const getAllExpenses = async () =>{
     return Expense.find({});
 }
